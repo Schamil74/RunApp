@@ -1,0 +1,54 @@
+.select {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+    height: 40px;
+    padding-right: 24px;
+    padding-left: 5px;
+
+    cursor: pointer;
+
+    color: $accent_dark !important;
+    border: 1px solid transparent;
+    border-bottom: 2px solid #e3f0fa;
+    border-radius: 5px;
+    border-radius: 0;
+    outline: none;
+    background-color: $white;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KDQo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPg0KPHN2ZyBmaWxsPSIjNGExNDhjIiB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyINCgl4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSIyOTIuMzYycHgiIGhlaWdodD0iMjkyLjM2MnB4Ig0KCXZpZXdCb3g9IjAgMCAyOTIuMzYyIDI5Mi4zNjIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI5Mi4zNjIgMjkyLjM2MjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KCTxnPg0KCQk8cGF0aA0KCQkJZD0iTTI4Ni45MzUsNjkuMzc3Yy0zLjYxNC0zLjYxNy03Ljg5OC01LjQyNC0xMi44NDgtNS40MjRIMTguMjc0Yy00Ljk1MiwwLTkuMjMzLDEuODA3LTEyLjg1LDUuNDI0DQoJCUMxLjgwNyw3Mi45OTgsMCw3Ny4yNzksMCw4Mi4yMjhjMCw0Ljk0OCwxLjgwNyw5LjIyOSw1LjQyNCwxMi44NDdsMTI3LjkwNywxMjcuOTA3YzMuNjIxLDMuNjE3LDcuOTAyLDUuNDI4LDEyLjg1LDUuNDI4DQoJCXM5LjIzMy0xLjgxMSwxMi44NDctNS40MjhMMjg2LjkzNSw5NS4wNzRjMy42MTMtMy42MTcsNS40MjctNy44OTgsNS40MjctMTIuODQ3QzI5Mi4zNjIsNzcuMjc5LDI5MC41NDgsNzIuOTk4LDI4Ni45MzUsNjkuMzc3eiIgLz4NCgk8L2c+DQoNCjwvc3ZnPg0K');
+    background-repeat: no-repeat no-repeat;
+    background-position: calc(100% - 10px) 50%;
+    background-size: 14px 8px;
+    box-shadow: none;
+
+    font-family: $accent_font;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 40px;
+
+    appearance: none;
+    @include below(map-get($breaks, mobile)) {
+    }
+
+    option {
+        color: $accent_dark;
+    }
+
+    &:focus {
+        border-bottom-color: #4a148c;
+    }
+
+    &:focus::-ms-value {
+        color: $accent_dark !important;
+        border-bottom-color: #4a148c;
+    }
+
+    &::-ms-expand {
+        display: none;
+    }
+    &.is-error {
+        border-color: $accent_alert !important;
+    }
+}

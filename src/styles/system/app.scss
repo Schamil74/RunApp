@@ -1,0 +1,49 @@
+.app {
+    display: grid;
+
+    max-width: $body_max_width;
+    height: inherit;
+    min-height: inherit;
+    min-height: inherit;
+    margin-right: auto;
+    margin-left: auto;
+
+    grid-template-areas:
+        'header'
+        'main'
+        'footer';
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+
+    &__header {
+        height: 60px;
+
+        grid-area: header;
+    }
+
+    &__main {
+        grid-area: main;
+    }
+
+    &__inner {
+        width: 100%;
+    }
+
+    &__footer {
+        height: 60px;
+
+        grid-area: footer;
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        width: 100%;
+        height: 100%;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
