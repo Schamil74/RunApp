@@ -5,7 +5,7 @@ import React from 'react'
 const blockClassName = 'input'
 
 interface IPropsField extends Ifield {
-    innerRef?: any
+    innerRef?: () => void
     shouldValidate: boolean
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
     onClick?: (event: React.MouseEvent<HTMLElement>) => void

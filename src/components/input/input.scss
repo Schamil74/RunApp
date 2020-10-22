@@ -1,5 +1,7 @@
 @import 'react-datepicker/dist/react-datepicker';
 .input {
+    position: relative;
+
     &__field {
         display: block;
 
@@ -47,6 +49,11 @@
         }
     }
     &__error {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+
         padding-right: 5px;
         padding-left: 5px;
 
@@ -57,6 +64,24 @@
     }
 }
 
+.react-datepicker {
+    font-family: $accent_font;
+}
+
 .react-datepicker-wrapper {
     display: block;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected {
+    background-color: #4a148c;
+}
+
+.react-datepicker__day--keyboard-selected:hover,
+.react-datepicker__month-text--keyboard-selected:hover,
+.react-datepicker__quarter-text--keyboard-selected:hover,
+.react-datepicker__year-text--keyboard-selected:hover {
+    background-color: #651ac2;
 }

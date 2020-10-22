@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC } from 'react'
 const blockClassName = 'form'
 
 type SelectProps = {
-    value: number | null
+    value: number
     options: Array<number>
     onChange: (ev: ChangeEvent<HTMLSelectElement>) => void
 }

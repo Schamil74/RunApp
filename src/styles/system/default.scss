@@ -5,10 +5,12 @@
 }
 
 html {
-    font-size: $base_fs;
+    font-size: 16px;
     line-height: $base_lh;
-
     @include below(map-get($breaks, laptop)) {
+        font-size: 1.171303075vw;
+    }
+    @include below(map-get($breaks, laptop-xs)) {
         font-size: 1.25vw;
     }
     @include below(map-get($breaks, tablet)) {
@@ -37,7 +39,7 @@ body {
 }
 
 body {
-    overflow: hidden;
+    overflow-x: hidden;
 
     color: $accent_dark;
     background-color: $white;
@@ -54,16 +56,6 @@ body {
     margin-left: auto;
     padding-right: $gutter;
     padding-left: $gutter;
-
-    @include below(map-get($breaks, laptop)) {
-        max-width: map-get($container, laptop);
-    }
-    @include below(map-get($breaks, tablet)) {
-        max-width: map-get($container, tablet);
-    }
-    @include below(map-get($breaks, mobile)) {
-        max-width: map-get($container, mobile);
-    }
 }
 
 h1,

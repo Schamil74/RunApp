@@ -57,7 +57,7 @@ export function createControl(
 }
 
 export function validate(control: Ifield): ValidateReturn {
-    const { validation, value, type, touched, errorMessage } = control
+    const { validation, value, touched, errorMessage } = control
 
     let isValid = true
     let optionErrorMessage = errorMessage
@@ -66,12 +66,13 @@ export function validate(control: Ifield): ValidateReturn {
         return { isValid, optionErrorMessage }
     }
 
-    if (validation.required) {
-        if (value.toLocaleString) {
+    if (validation.required && touched) {
+        if (value instanceof Date) {
             isValid = true
         } else {
             isValid = value.trim() !== ''
         }
+        optionErrorMessage = 'Поле не может быть пустым'
     }
 
     if (validation.email && touched) {
@@ -79,7 +80,7 @@ export function validate(control: Ifield): ValidateReturn {
 
         if (emailValid) {
             isValid = true
-        } else if (value === '' || emailValid) {
+        } else if (value === '') {
             isValid = false
             optionErrorMessage = 'Поле email не может быть пустым'
         } else {
@@ -93,7 +94,7 @@ export function validate(control: Ifield): ValidateReturn {
 
         if (telValid) {
             isValid = true
-        } else if (value === '' || telValid) {
+        } else if (value === '') {
             isValid = false
             optionErrorMessage = 'Поле телефон не может быть пустым'
         } else {
@@ -107,26 +108,12 @@ export function validate(control: Ifield): ValidateReturn {
 
         if (amountValid) {
             isValid = true
-        } else if (value === '' || amountValid) {
+        } else if (value === '') {
             isValid = false
             optionErrorMessage = 'Поле сумма взноса не может быть пустым'
         } else {
             isValid = false
             optionErrorMessage = 'Поле сумма взноса должно быть цифрами'
-        }
-    }
-
-    if (validation.minLength && touched) {
-        const minLengthValid = value.length >= validation.minLength
-
-        if (minLengthValid) {
-            isValid = true
-        } else if (value == '' || minLengthValid) {
-            isValid = false
-            optionErrorMessage = `Поле ${type} не может быть пустым`
-        } else {
-            isValid = false
-            optionErrorMessage = `Поле ${type} должно иметь не менее ${validation.minLength} символов`
         }
     }
 

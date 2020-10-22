@@ -14,6 +14,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const IconfontPlugin = require('iconfont-plugin-webpack')
 const dotenv = require('dotenv').config()
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const PrettierPlugin = require('prettier-webpack-plugin')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
@@ -197,6 +198,8 @@ const plugins = () => {
             'process.env': JSON.stringify(dotenv.parsed),
         }),
 
+        new PrettierPlugin(),
+
         new CleanWebpackPlugin(),
     ]
 
@@ -242,6 +245,7 @@ module.exports = {
     devServer: {
         compress: true,
         port: 8000,
+        host: '192.168.0.106',
         hot: isDev,
         historyApiFallback: true,
         overlay: {
@@ -257,6 +261,7 @@ module.exports = {
         modules: ['node_modules', path.resolve(__dirname, 'custom-loaders')],
     },
     module: {
+        // preLoaders: [],
         rules: [
             {
                 test: /\.(js|jsx)$/,
@@ -287,10 +292,14 @@ module.exports = {
                             includePaths: [
                                 path.resolve(__dirname, 'node_modules'),
                             ],
-                            importer: globImporter(),
+                            // importer: globImporter(),
                         },
                     },
                 }),
+            },
+            {
+                test: /\.scss/,
+                loader: 'import-glob-loader',
             },
             {
                 test: /\.(ttf|woff|woff2|eot|svg)$/,

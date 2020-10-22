@@ -20,7 +20,8 @@ $gutter: 15px;
 
 //===breaks========================
 $breaks: (
-    laptop: 1360px,
+    laptop: 1366px,
+    laptop-xs: 1280px,
     tablet: 1024px,
     mobile: 767px,
     mobilesm: 575px,
@@ -30,10 +31,7 @@ $breaks: (
 
 //===container-width========================
 $container: (
-    desktop: 1280px,
-    laptop: 990px,
-    tablet: 730px,
-    mobile: 100%,
+    desktop: 1330px,
 );
 
 //===transition=====================

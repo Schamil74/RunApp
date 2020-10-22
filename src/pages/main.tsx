@@ -19,6 +19,7 @@ const Main: FC = () => {
                 <Loader />
             ) : (
                 <div className="intro">
+                    <h2 className="intro__title">Добавьте участника</h2>
                     <Form modificator="intro" />
                     <Table modificator="intro" items={items} />
                 </div>

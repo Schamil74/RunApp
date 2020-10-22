@@ -41,9 +41,11 @@ const mask = [
 ]
 
 const options = [0, 3, 5, 10]
+
 interface IForm {
     className: string
 }
+
 const Form: React.FC<IForm> = props => {
     const { className } = props
     const dispatch: Dispatch = useDispatch()
@@ -52,13 +54,12 @@ const Form: React.FC<IForm> = props => {
     const [date, setDate] = useState<Date | null>(null)
     const [email, setEmail] = useState<string>('')
     const [phone, setPhone] = useState<string>('')
-    const [distance, setDistance] = useState<number | null>(null)
-    const [payment, setPayment] = useState<number | null>(null)
+    const [distance, setDistance] = useState<number>(0)
+    const [payment, setPayment] = useState<number>(0)
     const [id, setId] = useState<number>(100)
 
     const [formControls, setFormControls] = useState<IFormControls>({})
     const [isInputsValid, setInputsValid] = useState<boolean>(false)
-    const [isFormValid, setIsFormValid] = useState<boolean>(false)
     const [selectOptions, setSelectOptions] = useState<Array<number>>([])
     const refDatePicker = useRef<HTMLInputElement | null>(null)
 
@@ -66,6 +67,13 @@ const Form: React.FC<IForm> = props => {
         setFormControls(createFormControls())
         setSelectOptions(options)
     }, [])
+
+    const isValidForm = (isInputsValid: boolean, distance: number) => {
+        if (isInputsValid && !!distance) {
+            return true
+        }
+        return false
+    }
 
     const handleOnSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
         ev.preventDefault()
@@ -87,11 +95,10 @@ const Form: React.FC<IForm> = props => {
         setDate(null)
         setEmail('')
         setPhone('')
-        setPayment(null)
-        setDistance(null)
+        setPayment(0)
+        setDistance(0)
 
         setInputsValid(false)
-        setIsFormValid(false)
 
         setFormControls(createFormControls())
         setSelectOptions(options)
@@ -99,10 +106,6 @@ const Form: React.FC<IForm> = props => {
 
     const handleChangeSelect = (ev: ChangeEvent<HTMLSelectElement>) => {
         setDistance(+ev.target.value)
-
-        if (isInputsValid && Boolean(ev.target.value)) {
-            setIsFormValid(true)
-        }
     }
     const handleChangeField = (value: any, controlName: string) => {
         const updatedFormControls = { ...formControls }
@@ -113,7 +116,6 @@ const Form: React.FC<IForm> = props => {
                 setName(value)
                 break
             case 'date':
-                console.log(value)
                 setDate(value)
                 break
             case 'email':
@@ -139,10 +141,6 @@ const Form: React.FC<IForm> = props => {
 
         setInputsValid(validateForm(updatedFormControls))
         setFormControls(updatedFormControls)
-
-        if (isInputsValid && Boolean(distance)) {
-            setIsFormValid(true)
-        }
     }
 
     interface IDateInputProps {
@@ -192,7 +190,6 @@ const Form: React.FC<IForm> = props => {
                                     props: any
                                 ) => (
                                     <Input
-                                        {...props}
                                         innerRef={ref}
                                         name={control.name}
                                         type={control.type}
@@ -202,6 +199,7 @@ const Form: React.FC<IForm> = props => {
                                         touched={control.touched}
                                         placeholder={control.placeholder}
                                         errorMessage={control.errorMessage}
+                                        {...props}
                                     />
                                 )}
                             />
@@ -209,7 +207,6 @@ const Form: React.FC<IForm> = props => {
                     ) : control.name === 'date' ? (
                         <div className={blockClassName + '__field'}>
                             <DatePicker
-                                locale="ru"
                                 peekNextMonth
                                 showMonthDropdown
                                 showYearDropdown
@@ -220,12 +217,9 @@ const Form: React.FC<IForm> = props => {
                                     handleChangeField(d, controlName)
                                 }}
                                 maxDate={new Date()}
-                                value={date?.toLocaleString('ru-RU', {
-                                    year: 'numeric',
-                                    month: 'numeric',
-                                    day: 'numeric',
-                                })}
+                                selected={date}
                                 placeholderText={control.placeholder}
+                                locale={ru}
                                 customInput={
                                     <DateInput
                                         control={control}
@@ -280,7 +274,7 @@ const Form: React.FC<IForm> = props => {
                         <button
                             className={blockClassName + '__btn btn btn_wide'}
                             type="submit"
-                            disabled={!isFormValid}
+                            disabled={!isValidForm(isInputsValid, distance)}
                         >
                             Добавить
                         </button>

@@ -10,9 +10,9 @@ export type TItem = {
     name: string
     email: string
     phone: string
-    distance: number | null
-    payment: number | null
-    dateRegister: Date
+    distance: number
+    payment: number
+    dateRegister: Date | null
 }
 
 export type TItems = Array<TItem>

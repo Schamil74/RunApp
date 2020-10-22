@@ -9,12 +9,12 @@ const App: FC = () => {
                     <h1>RunApp</h1>
                 </div>
             </header>
-            <main className="app__main app-main">
+            <div className="app__main app-main">
                 <div className="app__container container">
                     <Main />
                 </div>
-            </main>
-            <footer className="app__footer app-header">
+            </div>
+            <footer className="app__footer app-footer">
                 <div className="app__container container">
                     <address className="app__author">
                         <a

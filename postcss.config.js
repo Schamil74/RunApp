@@ -14,4 +14,4 @@ module.exports = {
             sort: require('sort-css-media-queries').desktopFirst,
         }),
     ],
-};
+}

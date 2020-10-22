@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "esnext",
+        "target": "ES2015",
+        "module": "commonjs",
         "outDir": "dist/",
         "baseUrl": ".",
         "rootDir": ".",
@@ -20,15 +20,23 @@
         "strict": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "lib": ["dom", "dom.iterable", "ESNext"],
+        "lib": ["dom", "dom.iterable", "esnext"],
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "typeRoots": ["node_modules/@types"]
+        "typeRoots": ["node_modules/@types"],
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "importHelpers": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": true
     },
-    "include": ["src"]
-    // "exclude": ["node_modules"]
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Recommended",
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
 }
