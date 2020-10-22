@@ -245,7 +245,8 @@ module.exports = {
     devServer: {
         compress: true,
         port: 8000,
-        host: '192.168.0.106',
+        // для локального тестирования
+        // host: '192.168.0.106',
         hot: isDev,
         historyApiFallback: true,
         overlay: {
